@@ -93,6 +93,26 @@
       </div>
     </form>
 
+    <hr />
+
+    <form id="slack-form">
+      <details>
+        <summary>
+          <h4>Open slack at timestamp</h4>
+        </summary>
+        <p class="info-note">
+          Specify the domain for your slack instance (e.g. "foo" for foo.slack.com) and a channel name,
+          and you can jump directly to the anchor timestamp in slack.
+        </p>
+      </details>
+      <div>
+      </div>
+      <input id="slack-domain" name="domain" type="text" value="" placeholder="______.slack.com"/>
+      <span>#</span>
+      <input id="slack-channel" name="channel" type="text" value="" placeholder="channel"/>
+      <button type="submit">Go</button>
+    </form>
+
     <script src="delegated-events.js"></script>
     <script src="plugins.js"></script>
     <script src="popup.js"></script>

@@ -4,6 +4,7 @@ let fromTime = document.getElementById("from-time");
 let toTime = document.getElementById("to-time");
 
 let timeForm = document.getElementById("time-form");
+let slackForm = document.getElementById("slack-form");
 let updateCurrent = document.getElementById("update-current-page");
 
 const toDateFieldValue = (str) => {
@@ -165,6 +166,37 @@ function debouncedUpdateCurrentPage() {
   clearTimeout(timeout);
   timeout = setTimeout(updateCurrentPage, 200);
 }
+
+chrome.storage.local.get(["slackdomain", "slackchannel"], ({slackdomain, slackchannel}) => {
+  if (slackdomain) slackForm.querySelector("[name=domain]").value = slackdomain
+  if (slackchannel) slackForm.querySelector("[name=channel]").value = slackchannel
+})
+
+events.on("change", "#slack-form", (e) => {
+  const field = e.target.getAttribute("name")
+  if (!field || field === "") return
+  console.log({[`slack${field}`]: e.target.value})
+  chrome.storage.local.set({[`slack${field}`]: e.target.value})
+})
+
+slackForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let domain = slackForm.querySelector("[name=domain]").value;
+  const channel = slackForm.querySelector("[name=channel]").value;
+
+  domain = domain.replace(".slack.com", "")
+
+  chrome.storage.local.get(["anchor"], ({ anchor }) => {
+    if (anchor) {
+      chrome.tabs.create({
+        url: `https://${domain}.slack.com/archives/${channel}/s${parseDateFieldValue(
+          anchor
+        ).getTime()}000`,
+        selected: true,
+      });
+    }
+  });
+});
 
 
 function updateTimestampsOnCurrentPage() {
