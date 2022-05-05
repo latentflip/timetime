@@ -1,0 +1,22 @@
+{
+  "name": "TimeTime",
+  "description": "Timestamp management for ops sites",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/clock16.png",
+      "32": "/images/clock32.png",
+      "48": "/images/clock48.png",
+      "128": "/images/clock128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/clock16.png",
+    "32": "/images/clock32.png",
+    "48": "/images/clock48.png",
+    "128": "/images/clock128.png"
+  }
+}

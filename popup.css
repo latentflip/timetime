@@ -1,0 +1,55 @@
+.time-field label {
+  font-weight: bold;
+  display: block;
+}
+
+.time-field summary label {
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.epoch,
+.iso {
+  cursor: pointer;
+  border: 1px #999 solid;
+  padding: 1px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.copied {
+  color: green;
+}
+
+h4,
+.time-field label {
+  margin-bottom: 5px;
+}
+
+summary {
+  list-style: none;
+}
+
+summary h4:after {
+  content: "?";
+}
+
+summary h4:after, summary .help {
+  background-color: #2aa2fe;
+  color: white;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 100%;
+  font-size: 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: inset -1px -1px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset -1px -1px 1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: inset -1px -1px 1px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 3px;
+  cursor: pointer;
+}

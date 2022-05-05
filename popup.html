@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body style="width: 500px; padding: 20px">
+    <div>
+      <details>
+        <summary>
+          <button id="update-current-page">Update current page</button>
+          <label><input type="checkbox" name="lock" class="lock-current-page"> Lock</label>
+          <span class="help">?</span>
+        </summary>
+        <p class="info-note">
+          Hitting "update current page" will modify the timestamps for the current webpage (e.g. splunk/datadog)<br>
+          using the <strong>From</strong> and <strong>To</strong></strong> values.<br/>
+          If <strong>Lock</strong> is checked, the current page will be updated as soon as you modify From/To.
+        </p>
+      </details>
+    </div>
+
+    <div style="margin-top: 20px">
+      <details>
+        <summary><h4>Import</h4></summary>
+        <p class="info-note">
+          If the current page has timestamps in the URL, they will be imported as the <strong>From</strong> and <strong>To</strong>
+          values. <strong>Anchor</strong> will be set as the midpoint of the two.
+        </p>
+      </details>
+      <button class="import-times">Import timestamps from current page</button>
+    </div>
+
+    <form id="time-form" style="margin-top: 20px">
+      <div class="time-field" style="margin-bottom: 20px">
+        <div>
+          <details>
+            <summary>
+              <label for="anchor-time">Anchor</label><span class="help">?</span>
+            </summary>
+            <p class="info-note">
+              This is the time of interest.<br/>
+              It may be the start of an incident or the point at which you see something weird.<br/>
+              Use duration/around below to set the start and end timestamps based on this.
+            </p>
+          </details>
+          <input type="datetime-local" id="anchor-time" name="anchor" />
+          <small>UTC</small>
+        </div>
+        <div>
+          <small class="epoch"></small>
+          <small class="iso"></small>
+        </div>
+      </div>
+       
+      <div style="margin-top: 20px" class="modify-to">
+        <strong>Duration</strong>
+        <button type="button" data-amount="15m">+15m</button>
+        <button type="button" data-amount="1h">+1h</button>
+        <button type="button" data-amount="4h">+4h</button>
+        <button type="button" data-amount="24h">+24h</button>
+      </div>
+
+      <div style="margin-top: 10px; margin-bottom: 20px" class="modify-around">
+        <strong>Around</strong>
+        <button type="button" data-amount="15m">+/-15m</button>
+        <button type="button" data-amount="1h">+/-1h</button>
+        <button type="button" data-amount="4h">+/-4h</button>
+        <button type="button" data-amount="24h">+/-24h</button>
+      </div>
+
+      <div class="time-field" style="margin-top: 20px; margin-bottom: 20px">
+        <div>
+          <label for="from-time">From</label>
+          <input type="datetime-local" id="from-time" name="from" />
+          <small>UTC</small>
+        </div>
+        <div>
+          <small class="epoch"></small>
+          <small class="iso"></small>
+        </div>
+      </div>
+
+      <div class="time-field" style="margin-top: 20px; margin-bottom: 20px">
+        <div>
+          <label for="to-time">To</label>
+          <input type="datetime-local" id="to-time" name="to" />
+          <small>UTC</small>
+        </div>
+        <div>
+          <small class="epoch"></small>
+          <small class="iso"></small>
+        </div>
+      </div>
+    </form>
+
+    <script src="delegated-events.js"></script>
+    <script src="plugins.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
